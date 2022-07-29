@@ -4,7 +4,6 @@ from torchcrf import CRF
 import torchcrf
 import pandas as pd
 
-
 class LSTM_CRF(nn.Module):
     def __init__(self):
         super(LSTM_CRF, self).__init__()
@@ -48,13 +47,7 @@ class CNN_LSTM_CRF(nn.Module):
         self.classify = nn.Linear(HIDDEN_SIZE * 2, label_size+1)
         self.crf = CRF(label_size+1, batch_first=True)
 
-    # def conv1d_self(self, in_channels, out_channels, kernel=3, bias=True, padding = 1):
-    #     self.conv1d = nn.Conv1d(in_channels,
-    #                             out_channels,
-    #                             kernel,
-    #                             bias,
-    #                             padding)
-    #     return self.conv1d()
+
 
     def _get_cnn_lstm_feature(self, inputs):
         # self.conv1d = self.conv1d_self(

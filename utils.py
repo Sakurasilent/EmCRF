@@ -9,10 +9,10 @@ def get_vocab2index():
     # vocab_dict = {df['index'].to_list: df['word'].to_list}
     return dict(df.values)
 
+
 def get_label2index():
     df = pd.read_csv(LABEL_PATH, names=['label', 'index'], sep=',')
     return dict(df.values)
-#  获取标签对
 
 
 # 按照换行切分数据 且word 与 label 对应
@@ -81,11 +81,26 @@ def collate_fn(data):
     return torch.tensor(input).to(device), torch.tensor(target).to(device), torch.tensor(mask).bool().to(device)
 
 
+def extract(label, text):
+    i = 0
+    res = []
+    while i < len(label):
+        if label[i] != 'O':
+            prefix, name = label[i].split('-')
+            start = end = i
+            i += 1
+            while i < len(label) and ((label[i] == 'M-' + name) or (label[i] == 'E-' + name)) :
+                end = i
+                i += 1
+            res.append([name, text[start:end + 1]])
+        else:
+            i += 1
+    return res
 
 
 if __name__ == '__main__':
-    words, labels = get_word_label(TRAIN_PATH)
-    print(len(words),len(labels))
-    print(labels)
-    # vocabs = get_vocab()
-    # print(vocabs)
+    id2label = dict((v, k) for k, v in get_label2index().items())
+    print(id2label)
+    exit()
+    word2id = get_vocab2index()
+    print(word2id)

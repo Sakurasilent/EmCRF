@@ -11,8 +11,8 @@ def generate_vocab():
     # print(VOCAB_SIZE)
     vocab_dict = {v: k for k, v in enumerate(vocab_list)}
     vocab = pd.DataFrame(list(vocab_dict.items()))
-    # print(vocab)
-    # exit()
+    print(vocab)
+    exit()
     vocab.to_csv(VOCAB_PATH, header=None, index=None)
 
 
@@ -22,7 +22,7 @@ def generate_label():
     label_list = df['label'].value_counts().keys().to_list()+['OTHER']
     label_dict = {v: k for k, v in enumerate(label_list)}
     label = pd.DataFrame(list(label_dict.items()))
-    label.to_csv(LABEL_PATH, header=None, index= None)
+    label.to_csv(LABEL_PATH, header=None, index=None)
 
 
 if __name__ == '__main__':
