@@ -31,5 +31,6 @@ if __name__ == '__main__':
             if acc_cur > acc:
                 acc = acc_cur
                 # print(acc)
-                torch.save(model, MODEL_LSTM_DIR + f'model_{e}.pth')
+                # torch.save(model, MODEL_LSTM_DIR + f'model_{e}.pth')
+                torch.save(model, MODEL_2CNN_LSTM_DIR + f'model_{e}.pth')
         # torch.save(model, MODEL_DIR + f'model_{e}.pth')

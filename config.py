@@ -23,3 +23,4 @@ HIDDEN_SIZE = 128
 MODEL_DIR = './output/model/'
 MODEL_CNN_DIR = './output/model/cnn_lstm_crf_model/'
 MODEL_LSTM_DIR = './output/model/lstm_crf_model/'
+MODEL_2CNN_LSTM_DIR = './output/model/cnn2_lstm_crf_model/'
