@@ -11,8 +11,9 @@ if __name__ == '__main__':
         shuffle=True,
         collate_fn=collate_fn
     )
-    model = LSTM_CRF()
+    # model = LSTM_CRF()
     # model = CNN_LSTM_CRF()
+    model = Mod_CNN_LSTM_CRF()
     model.to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=LR)
     acc = 0.8
