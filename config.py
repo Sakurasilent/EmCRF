@@ -1,7 +1,7 @@
 import torch
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
-LR = 1e-4
+LR = 1e-2
 WORD_PAD = '<PAD>'
 WORD_PAD_ID = 0
 WORD_UNK = '<UNK>'

@@ -1,7 +1,6 @@
 import torch.nn as nn
 from config import *
 from torchcrf import CRF
-import torchcrf
 import pandas as pd
 
 
@@ -70,6 +69,7 @@ class CNN_LSTM_CRF(nn.Module):
         y_pred = self._get_cnn_lstm_feature(inputs)
         return -self.crf.forward(y_pred, target, mask)
 
+
 # 修改后的Cnn
 class Mod_CNN_LSTM_CRF(nn.Module):
     def __init__(self):
@@ -81,7 +81,7 @@ class Mod_CNN_LSTM_CRF(nn.Module):
         self.conv = nn.Sequential(
             nn.Conv2d(in_channels=1, out_channels=EMBEDDING_DIM, kernel_size=(3, 100), padding=1),
             nn.ReLU(),
-            nn.AvgPool2d((1, 3)),
+            nn.MaxPool2d((1, 3)),
         )
         self.lstm = nn.LSTM(EMBEDDING_DIM, HIDDEN_SIZE, batch_first=True, bidirectional=True, num_layers=2)
         self.classfier = nn.Linear(HIDDEN_SIZE*2, label_size+1)
@@ -95,7 +95,7 @@ class Mod_CNN_LSTM_CRF(nn.Module):
         out = self.embed(inputs)
         out = out.unsqueeze(1)
         out = self.conv(out)
-        out = out.reshape(out.size()[0],out.size()[2],out.size()[1])
+        out = out.reshape(out.size()[0], out.size()[2], out.size()[1])
         out, _ = self.lstm(out)
         return self.classfier(out)
 
