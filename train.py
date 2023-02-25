@@ -13,9 +13,9 @@ if __name__ == '__main__':
         shuffle=True,
         collate_fn=collate_fn
     )
-    # model = LSTM_CRF()
+    model = LSTM_CRF()
     # model = CNN_LSTM_CRF()
-    model = Mod_CNN_LSTM_CRF()
+    # model = Mod_CNN_LSTM_CRF()
     model.to(device)
     # 两组跳参数的方法
     # lambda1 = lambda epoch: epoch // 30
@@ -42,8 +42,8 @@ if __name__ == '__main__':
             if acc_cur > acc:
                 acc = acc_cur
                 # print(acc)
-                # torch.save(model, MODEL_LSTM_DIR + f'model_{e}.pth')
-                torch.save(model, MODEL_2CNN_LSTM_DIR + f'model_{e}.pth')
+                torch.save(model, MODEL_LSTM_DIR + f'model_{e}.pth')
+                # torch.save(model, MODEL_2CNN_LSTM_DIR + f'model_{e}.pth')
         scheduler.step()
         # print(optimizer.state_dict()['param_groups'][0]['lr'])
         # torch.save(model, MODEL_DIR + f'model_{e}.pth')

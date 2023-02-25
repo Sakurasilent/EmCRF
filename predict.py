@@ -5,7 +5,7 @@ from model import *
 from config import *
 
 if __name__ == '__main__':
-    text = ''
+    text = '我叫马化腾，在腾讯公司任职，工作时常两年半'
     word2id = get_vocab2index()
     input = torch.tensor([[word2id.get(w, WORD_UNK_ID) for w in text]]).to(device)
     # input = torch.LongTensor([[word2id.get(w, WORD_UNK_ID) for w in text] + [WORD_PAD_ID]*(180-len(text))]).to(device)
@@ -15,7 +15,7 @@ if __name__ == '__main__':
     mask = torch.tensor([[1] * len(text) ]).bool().to(device)
     # print(mask)
     # exit()
-    model = torch.load('output/model/lstm_crf_model/model_608.pth')
+    model = torch.load('output/model/lstm_crf_model/model_0.pth')
     model.to(device)
     y_pred = model(input, mask)
     id2label = dict((v, k) for k, v in get_label2index().items())

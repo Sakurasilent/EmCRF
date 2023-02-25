@@ -126,7 +126,7 @@ if __name__ == '__main__':
     out2 = conv2(input)
     print(out2.size())
     avg = nn.AvgPool2d((1, 3))
-    out2= avg(out2)
+    out2 = avg(out2)
     print(len(out2), len(out2[0]), len(out2[1]), len(out2[2]))
     print(type(out2.size()[0]))
     print(out2.size())
